@@ -1,0 +1,122 @@
+/*
+ * claw.h
+ *      Author: sunder
+ */
+
+#ifndef CLAW_H_
+#define CLAW_H_
+
+#include "Headers.h"
+
+class Conservation_Law {
+
+	double prandtl_no;
+	double GAMMA_L;
+	double GAMMA_G;
+	double MU_L;
+	double MU_G;
+	double P_INF_L;
+	double P_INF_G;
+
+public:
+	/* Constructors */
+
+	Conservation_Law();
+	Conservation_Law(double, double, double, double, double, double, double);
+
+	/* Physical properties of the gas */
+
+	double gamma() const;
+	double gamma(const Vector<double>&);
+	double gamma(const double);
+	double P_inf(const Vector<double>&);
+	double P_inf(const Vector<double>&, const double);
+	double P_inf(const double, const double);
+	double Pr() const;
+	double viscosity(const Vector<double>&);
+	double heat_conductivity(const Vector<double>&);
+
+
+	/* Auxiliary properties of the gas */
+
+	double Pressure(const Vector<double>&);
+	double Temperature(const Vector<double>&);
+	double speed_of_sound(const Vector<double>&);
+
+	/* Conversions and flux calculations */
+
+	void primitive_to_conserved(const Vector<double>&, Vector<double>&) const;
+	void primitive_to_conserved(const Vector<double>&, double, double, Vector<double>&) const;
+	void conserved_to_primitive(const Vector<double>&, Vector<double>&) const;
+	void conserved_to_primitive(const Vector<double>&, double, double, Vector<double>&) const;
+
+	void compute_pure_convective_flux(const Vector<double>&, const double, const double, const double, const double, Vector<double>&);
+	void compute_pure_viscous_flux(const Vector<double>&, const FullMatrix<double>&, const double, const double, const double, const double, Vector<double>&);
+	void compute_viscous_flux_zero_flux(const Vector<double>&, const FullMatrix<double>&, const double, const double, Vector<double>&);
+
+
+	void temperature_gradient(const Vector<double>&, const FullMatrix<double>&, double*);
+
+	void compute_x_y_flux(const Vector<double>&, const FullMatrix<double>&, double, double, Vector<double>&, Vector<double>&);
+	void compute_physical_flux(const Vector<double>&, const FullMatrix<double>&, double, double, double, double, Vector<double>&);
+
+	void FluxFunction(const Vector<double>&, double, double, double, double, Vector<double>&);
+	/* Riemann solvers  */
+
+	Vector<double> viscous_LLF_flux(
+			const Vector<double>&,
+			const Vector<double>&,
+			const FullMatrix<double>&,
+			const FullMatrix<double>&,
+			double, double, double, unsigned int = 1);
+
+	void LLF_riemann_solver(
+			const Vector<double>&,
+			const Vector<double>&,
+			double, double, double, double, Vector<double>&);
+
+	void HLLC_riemann_solver(
+			const Vector<double>&,
+			const Vector<double>&,
+			double, double, double, double,
+			double, double, double, double, Vector<double>&);
+
+	void rotated_HLLC_riemann_solver(
+			const Vector<double>&,
+			const Vector<double>&,
+			double, double, double, double,
+			double, double, double, double, Vector<double>&);
+
+	void viscous_riemann_solver(
+			const Vector<double>&,
+			const Vector<double>&,
+			const FullMatrix<double>&,
+			const FullMatrix<double>&,
+			double, double, double, double,
+			double, double, double, unsigned int, Vector<double>&);
+
+	Vector<double> numerical_flux(
+			const Vector<double>&,
+			const Vector<double>&,
+			const FullMatrix<double>&,
+			const FullMatrix<double>&,
+			double, double, double, double,
+			double, double, double, double, double, unsigned int = 1);
+
+	void axisymmetric_source(Point<2>, const Vector<double>&, Vector<double>&);
+	/* Boundary conditions */
+
+
+	Vector<double> compute_convective_flux_at_no_slip_boundary(const Vector<double>&, double, double,  double = 0.0, double = 0.0);
+	Vector<double> compute_viscous_flux_at_no_slip_adiabatic_boundary(const Vector<double>&, const FullMatrix<double>&, double, double, double =0.0, double = 0.0);
+
+	Vector<double> compute_convective_flux_at_inflow_outflow_boundary(const Vector<double>&, const Vector<double>&, double, double);
+	Vector<double> compute_viscous_flux_at_inflow_outflow_boundary(const Vector<double>&, const FullMatrix<double>&, const Vector<double>&, double, double);
+
+};
+
+
+
+
+
+#endif /* CLAW_H_ */
