@@ -29,5 +29,5 @@ DEAL_II_INITIALIZE_CACHED_VARIABLES()
 PROJECT(${TARGET})
 DEAL_II_INVOKE_AUTOPILOT()
 
-#find_package(GSL REQUIRED)
-#target_link_libraries(${TARGET} GSL::gsl GSL::gslcblas)
+find_package(GSL REQUIRED)
+target_link_libraries(${TARGET} GSL::gsl GSL::gslcblas)

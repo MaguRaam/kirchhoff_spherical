@@ -15,7 +15,7 @@ int main(int argc, char *argv[]){
 		double finalTime = 0.15;
 		double cfl = 0.4;
 		bool restart = false;
-		unsigned int refinement = 0;
+		unsigned int refinement = 5;
 
 		Weno4_2D test_problem(finalTime, cfl, restart, refinement);
 		test_problem.run();

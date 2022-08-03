@@ -40,7 +40,7 @@ print("no of cells/Radius of the bubble = ", R/h)
 #spherical kirchhoff surface
 Rk       =   25.0*R                         #radius of semicircle arc
 Lk       =   math.pi*Rk                     #length of semicircle arc
-Nk       =   2*int(Lk/h)                    #no of cells on arc
+Nk       =   5000                           #no of cells on arc
 
 print("no of cells on semicircle arc = ", Nk)
 

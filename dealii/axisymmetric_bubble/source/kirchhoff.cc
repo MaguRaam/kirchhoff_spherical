@@ -3,7 +3,7 @@
 /*Set parameters for Kirchhoff surface (see parameters.py) */
 
 // total no of quadarture points
-int Nk = 5234;
+int Nk = 5000;
 
 // farfield pressure:
 double p_inf = 10; // far-field pressure

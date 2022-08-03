@@ -23,6 +23,21 @@ Point(4) = {zmax, rmax, 0, dc};
 Point(5) = {0, rmax, 0, dc};
 Point(6) = {zmin, rmax, 0, dc};
 
+ 
+//line connecting domain boundary points:
+Line(1) = {1, 2};
+Line(2) = {2, 3};
+Line(3) = {3, 4};
+Line(4) = {4, 5};
+Line(5) = {5, 6};
+Line(6) = {6, 1};
+
+
+//surfaces:
+Line Loop(1) = {1, 2, 3, 4, 5, 6};
+Plane Surface(1) = {1};
+
+
 // bubble arc points:
 Point(7) = {-R, 0, 0, bc};  
 Point(8) = {0, R, 0, bc};   
@@ -46,21 +61,24 @@ Point(19) = {Rk, 0, 0, kc};
 Point(20) = {-Rk*0.70710678118, Rk*0.70710678118, 0, kc};
 Point(21) = {Rk*0.70710678118, Rk*0.70710678118, 0, kc};
 
- 
-//line connecting domain boundary points:
-Line(1) = {1, 17};
-Line(2) = {17, 12};
-Line(3) = {12, 7};
-Line(4) = {7, 2};
-Line(5) = {2, 9};
-Line(6) = {9, 14};
-Line(7) = {14, 19};
-Line(8) = {19, 3};
-Line(9) = {3, 4};
-Line(10) = {4, 5};
-Line(11) = {5, 6};
-Line(12) = {6, 1};
+//Point{7} In Surface {1};
+Point{8} In Surface {1};
+//Point{9} In Surface {1};
+Point{10} In Surface {1};
+Point{11} In Surface {1};
+//Point{12} In Surface {1};
+Point{13} In Surface {1};
+//Point{14} In Surface {1};
+Point{15} In Surface {1};
+Point{16} In Surface {1};
+//Point{17} In Surface {1};
+Point{18} In Surface {1};
+//Point{19} In Surface {1};
+Point{20} In Surface {1};
+Point{21} In Surface {1};
 
-Curve Loop(1) = {12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-Plane Surface(1) = {1};
+//to create quad mesh:
 Recombine Surface {1};
+
+
+

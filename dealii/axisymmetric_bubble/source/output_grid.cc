@@ -9,7 +9,7 @@ void Weno4_2D::output_grid() {
 
     data_out.build_patches ();
 
-    const std::string filename = "grid/grid_"+
+    const std::string filename = "../grid/grid_"+
                                   Utilities::int_to_string (triangulation.locally_owned_subdomain(), 4) + ".vtu";
     std::ofstream output (filename.c_str());
     data_out.write_vtu (output);

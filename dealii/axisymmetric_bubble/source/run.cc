@@ -45,7 +45,7 @@ void Weno4_2D::run()
 
 	auto start_grid_output = std::chrono::system_clock::now();
 
-	//	if(!RESTART) output_grid();
+	if(!RESTART) output_grid();
 
 	auto start_setup_system = std::chrono::system_clock::now();
 

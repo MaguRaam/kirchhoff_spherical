@@ -1,0 +1,123 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "bubble",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "bubble::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bubble-Debug-4907abdee29221d0b937.json",
+					"name" : "bubble",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "debug::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-debug-Debug-130039bd75d6d290a975.json",
+					"name" : "debug",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "distclean::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-distclean-Debug-22f2a3b0368663219dcf.json",
+					"name" : "distclean",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "info::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-info-Debug-9a285c8c0a853158ca9d.json",
+					"name" : "info",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "release::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-release-Debug-bcdaafdc288232f54de6.json",
+					"name" : "release",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "run::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-run-Debug-85e257d746b1d311b079.json",
+					"name" : "run",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "runclean::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-runclean-Debug-a24c0e55aa2afca9f015.json",
+					"name" : "runclean",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "strip_comments::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-strip_comments-Debug-da0302ba3c0acab87468.json",
+					"name" : "strip_comments",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/dipak/magu/dealii/kirchhoff_sphere/dealii/axisymmetric_bubble/build",
+		"source" : "/home/dipak/magu/dealii/kirchhoff_sphere/dealii/axisymmetric_bubble"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
