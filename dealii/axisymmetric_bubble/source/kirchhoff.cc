@@ -2,22 +2,6 @@
 
 /*Set parameters for Kirchhoff surface (see parameters.py) */
 
-// total no of quadarture points
-int Nk = 5000;
-
-// farfield pressure:
-double p_inf = 10; // far-field pressure
-
-// bubble radius:
-double R0 = 0.25;
-
-// radius of semicircular arc
-double Rk = 25 * R0;
-
-// observer location
-double ro = 29.0 * R0;
-double zo = 0.0;
-Point<2, double> po{zo, ro};
 
 // get quadrature points on Kirchhoff surface:
 void Weno4_2D::get_quad_points()
@@ -52,7 +36,7 @@ void Weno4_2D::get_quad_points()
 }
 
 // get pressure on Kirchhoff surface and return pressure at observer point:
-double Weno4_2D::get_pressure()
+void Weno4_2D::get_pressure()
 {
     // loop over quadrature points in the current process and interpolate pressure and pressure derivative along normal:
     for (unsigned int q = 0; q < q_point.size(); ++q)
@@ -113,9 +97,5 @@ double Weno4_2D::get_pressure()
     std::sort(q_global.begin(), q_global.end(), [](const KirchhoffData &a, const KirchhoffData &b)
               { return a.theta < b.theta; });
 
-    // return pressure at observer point:
-    auto cell = GridTools::find_active_cell_around_point(mapping, dof_handler, po).first;
-    cell->get_dof_indices(local_dof_indices);
-    unsigned int local_index = global_to_local_index_map[local_dof_indices[0]];
-    return evaluate_weno_polynomial(coeffs_P[local_index], WENO_poly_consts[local_index], po, Cell[local_index].h()) - p_inf;
 }
+

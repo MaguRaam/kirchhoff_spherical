@@ -291,6 +291,10 @@ auto compute_emission_time(const boost::multi_array<Point, 2> &xq, Point xo, dou
 // 4 point Lagrange interpolation at emission time:
 inline auto interpolate_pressure(const std::vector<double> &t, double tau, int theta_index, const boost::multi_array<double, 2> &p, const boost::multi_array<double, 2> &pr)
 {
+		//we assume pressure at negative emission time is 0: 
+    if (tau <= 0.)
+        return std::tuple(0.0, 0.0, 0.0);
+
 
     // get the time stencil for interpolation:
     int i = 0;
@@ -299,9 +303,9 @@ inline auto interpolate_pressure(const std::vector<double> &t, double tau, int t
         i++;
 
     // interpolate pressure and its derivative at emission time using 4pt Lagrange polynomial:
-    double p_tau = lagrange_interpolation<4>({t[i - 2], t[i - 1], t[i], t[i + 1]}, {p[i - 2][theta_index], p[i - 1][theta_index], p[i][theta_index], p[i + 1][theta_index]}, tau);
-    double pr_tau = lagrange_interpolation<4>({t[i - 2], t[i - 1], t[i], t[i + 1]}, {pr[i - 2][theta_index], pr[i - 1][theta_index], pr[i][theta_index], pr[i + 1][theta_index]}, tau);
-    double pt_tau = lagrange_derivative<4>({t[i - 2], t[i - 1], t[i], t[i + 1]}, {p[i - 2][theta_index], p[i - 1][theta_index], p[i][theta_index], p[i + 1][theta_index]}, tau);
+    double p_tau = lagrange_interpolation<4>({t[i - 1], t[i], t[i + 1], t[i + 2]}, {p[i - 1][theta_index], p[i][theta_index], p[i + 1][theta_index], p[i + 2][theta_index]}, tau);
+    double pr_tau = lagrange_interpolation<4>({t[i - 1], t[i], t[i + 1], t[i + 2]}, {pr[i - 1][theta_index], pr[i][theta_index], pr[i + 1][theta_index], pr[i + 2][theta_index]}, tau);
+    double pt_tau = lagrange_derivative<4>({t[i - 1], t[i], t[i + 1], t[i + 2]}, {p[i - 1][theta_index], p[i][theta_index], p[i + 1][theta_index], p[i + 2][theta_index]}, tau);
 
     return std::tuple(std::move(p_tau), std::move(pr_tau), std::move(pt_tau));
 }

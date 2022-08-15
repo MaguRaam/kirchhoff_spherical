@@ -1,0 +1,1161 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bubble"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"ADD_EXECUTABLE",
+			"DEAL_II_INVOKE_AUTOPILOT",
+			"TARGET_LINK_LIBRARIES",
+			"DEAL_II_SETUP_TARGET",
+			"target_link_libraries",
+			"TARGET_COMPILE_OPTIONS",
+			"TARGET_COMPILE_DEFINITIONS",
+			"TARGET_INCLUDE_DIRECTORIES"
+		],
+		"files" : 
+		[
+			"/home/magu/library/dealii/deal.II-v9.3.3/share/deal.II/macros/macro_deal_ii_invoke_autopilot.cmake",
+			"CMakeLists.txt",
+			"/home/magu/library/dealii/deal.II-v9.3.3/share/deal.II/macros/macro_deal_ii_setup_target.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 30,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 54,
+				"parent" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 55,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 169,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 2,
+				"line" : 129,
+				"parent" : 3
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 133,
+				"parent" : 3
+			},
+			{
+				"command" : 7,
+				"file" : 2,
+				"line" : 110,
+				"parent" : 3
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " "
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-pedantic"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fPIC"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wextra"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wmissing-braces"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Woverloaded-virtual"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wpointer-arith"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wsign-compare"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wswitch"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wsynth"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wwrite-strings"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wno-placement-new"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wno-literal-suffix"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wno-psabi"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wno-class-memaccess"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fopenmp-simd"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wno-unused-local-typedefs"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-O0"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-ggdb"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wa,--compress-debug-sections"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 7,
+					"define" : "BOOST_NO_AUTO_PTR"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "DEBUG"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/deal.II-v9.3.3/include"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/deal.II-v9.3.3/include/deal.II/bundled"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/parmetis-4.0.3/include"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/trilinos-release-12-18-1/include"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/usr/include/suitesparse"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/petsc-3.13.1/include"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/hdf5-1.10.7/include"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/oce-OCE-0.18.3/include/oce"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/p4est-2.3.2/FAST/include"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/home/magu/library/dealii/symengine-0.7.0/include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30
+			]
+		}
+	],
+	"id" : "bubble::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-rdynamic  -rdynamic -fuse-ld=gold -ggdb",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/magu/library/dealii/deal.II-v9.3.3/lib:/home/magu/library/dealii/p4est-2.3.2/DEBUG/lib:/home/magu/library/dealii/trilinos-release-12-18-1/lib:/home/magu/library/dealii/petsc-3.13.1/lib:/home/magu/library/dealii/parmetis-4.0.3/lib:/home/magu/library/dealii/arpack-ng-3.8.0/lib:/home/magu/library/dealii/hdf5-1.10.7/lib:/home/magu/library/dealii/oce-OCE-0.18.3/lib:/home/magu/library/dealii/symengine-0.7.0/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/home/magu/library/dealii/deal.II-v9.3.3/lib/libdeal_II.g.so.9.3.3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgsl.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgslcblas.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/p4est-2.3.2/DEBUG/lib/libp4est.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/p4est-2.3.2/DEBUG/lib/libsc.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ltbb",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lz",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/librol.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtempus.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libmuelu-adapters.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libmuelu-interface.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libmuelu.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/liblocathyra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/liblocaepetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/liblocalapack.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libloca.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libnoxepetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libnoxlapack.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libnox.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libintrepid2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libintrepid.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteko.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libstratimikos.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libstratimikosbelos.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libstratimikosamesos2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libstratimikosaztecoo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libstratimikosamesos.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libstratimikosml.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libstratimikosifpack.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libanasazitpetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libModeLaplace.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libanasaziepetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libanasazi.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libamesos2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libshylu_nodetacho.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libbelosxpetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libbelostpetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libbelosepetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libbelos.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libml.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libifpack.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libzoltan2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libpamgen_extras.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libpamgen.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libamesos.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libgaleri-xpetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libgaleri-epetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libaztecoo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libisorropia.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libxpetra-sup.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libxpetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libthyratpetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libthyraepetraext.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libthyraepetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libthyracore.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtrilinosss.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtpetraext.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtpetrainout.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtpetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libkokkostsqr.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtpetraclassiclinalg.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtpetraclassicnodeapi.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtpetraclassic.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libepetraext.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libtriutils.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libshards.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libzoltan.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libepetra.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libsacado.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/librtop.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libkokkoskernels.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchoskokkoscomm.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchoskokkoscompat.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchosremainder.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchosnumerics.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchoscomm.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchosparameterlist.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchosparser.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libteuchoscore.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libkokkosalgorithms.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libkokkoscontainers.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libkokkoscore.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/trilinos-release-12-18-1/lib/libgtest.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lumfpack",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lcholmod",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lccolamd",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lcolamd",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lcamd",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lsuitesparseconfig",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lamd",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libpetsc.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libHYPRE.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libcmumps.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libdmumps.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libsmumps.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libzmumps.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libmumps_common.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libpord.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/petsc-3.13.1/lib/libscalapack.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-llapack",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lblas",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/parmetis-4.0.3/lib/libparmetis.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/parmetis-4.0.3/lib/libmetis.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmpi_usempif08",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmpi_usempi_ignore_tkr",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmpi_mpifh",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lmpi",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgfortran",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lquadmath",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/arpack-ng-3.8.0/lib/libparpack.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/arpack-ng-3.8.0/lib/libarpack.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/hdf5-1.10.7/lib/libhdf5_hl.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/hdf5-1.10.7/lib/libhdf5.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKBO.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKBool.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKBRep.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKernel.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKFeat.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKFillet.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKG2d.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKG3d.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKGeomAlgo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKGeomBase.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKHLR.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKIGES.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKMath.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKMesh.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKOffset.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKPrim.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKShHealing.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKSTEP.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKSTEPAttr.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKSTEPBase.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKSTEP209.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKSTL.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKTopAlgo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/oce-OCE-0.18.3/lib/libTKXSBase.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lopenblas",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/home/magu/library/dealii/symengine-0.7.0/lib/libsymengine.so.0.7.0",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgmp",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "bubble",
+	"nameOnDisk" : "bubble",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/allocate_memory.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/cell_properties.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/claw.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/cls.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/compute_cell_properties.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/compute_primitive.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/compute_reconstruction_matrices.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/compute_rhs.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/compute_smoothness_indicators.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/compute_time_step.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/compute_weno_constants.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/constructor.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/evaluate_weno_polynomial.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/exceptions.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/initial_condition.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/initialize.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/kirchhoff.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/lu.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/main.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/make_grid.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/output_grid.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/output_results.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/reconstruct.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/restart.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/riemann_solvers.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/run.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/setup_system.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/smoothness_indicator_constants.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/solve_ssprk33.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/solve_ssprk54.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "source/trueSolution.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/CLS.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/Exceptions.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/Headers.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/LU.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/Riemann_Solvers.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/Weno432.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/cell_properties.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/claw.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/trueSolution.h",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

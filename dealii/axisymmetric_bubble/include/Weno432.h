@@ -47,7 +47,7 @@ class Weno4_2D
     // functions and datastructures related to Kirchhoff surface:
 
     void get_quad_points();
-    double get_pressure();
+    void get_pressure();
 
     // quadrature points and cells containing quadrature points:
     std::vector<Point<2, double>> q_point;
@@ -55,6 +55,24 @@ class Weno4_2D
 
     // perturbed pressure and normal derivative at quadrature points:
     std::vector<KirchhoffData> q_local, q_global;
+
+        
+    // total no of quadarture points
+    int Nk = 5000;
+
+    // farfield pressure:
+    double p_inf = 10; // far-field pressure
+
+    // bubble radius:
+    double R0 = 0.25;
+
+    // radius of semicircular arc
+    double Rk = 25 * R0;
+
+		// observer location
+		double ro = 29.0 * R0;
+		double zo = 0.0;
+		Point<2, double> po{zo, ro};
 
 public:
     void make_grid();

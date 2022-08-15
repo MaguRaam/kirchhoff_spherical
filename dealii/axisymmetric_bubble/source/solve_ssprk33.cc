@@ -2,6 +2,8 @@
 
 // Solve using SSPRK(3,3)
 
+
+
 void Weno4_2D::solve_ssprk33()
 {
 	pcout << "solve by ssprk33: " << std::endl;
@@ -35,12 +37,9 @@ void Weno4_2D::solve_ssprk33()
 	{
 		pfile.open("../kirchhoff/data/pressure.dat");
 		tfile.open("../kirchhoff/data/time.dat");
-		pofile.open("../kirchhoff/p_weno.dat");
 		pfile.flags(std::ios::dec | std::ios::scientific);
 		tfile.flags(std::ios::dec | std::ios::scientific);
-		pofile.flags(std::ios::dec | std::ios::scientific);
 		pfile.precision(16);
-		pofile.precision(16);
 		tfile.precision(16);
 	}
 
@@ -51,7 +50,7 @@ void Weno4_2D::solve_ssprk33()
 		if (count % 10 == 0)
 		{
 
-			double oberver_pressure = get_pressure(); // compute pressure on arc and observer point:
+			get_pressure(); // compute pressure on arc:
 
 			// write data from 0th process:
 			if (Utilities::MPI::this_mpi_process(MPI_COMM_WORLD) == 0)
@@ -64,8 +63,25 @@ void Weno4_2D::solve_ssprk33()
 				for (unsigned int i = 0; i < q_global.size(); ++i)
 					pfile << q_global[i].p << "\t" << q_global[i].pr << "\n";
 
-				pofile << time << "\t" << oberver_pressure << "\n";
 			}
+
+			//write pressure at observer point:
+			auto cell = GridTools::find_active_cell_around_point(mapping, dof_handler, po).first;
+
+			if (cell != dof_handler.end() && cell->is_locally_owned()){
+
+				cell->get_dof_indices(local_dof_indices);
+    			unsigned int local_index = global_to_local_index_map[local_dof_indices[0]];
+    		    double observer_pressure = evaluate_weno_polynomial(coeffs_P[local_index], WENO_poly_consts[local_index], po, Cell[local_index].h()) - p_inf;
+
+    		    pofile.open("../kirchhoff/p_weno.dat", std::ios_base::app);
+    		    pofile.flags(std::ios::dec | std::ios::scientific);
+    		    pofile.precision(16);
+
+    		    pofile << time << "\t" << observer_pressure << "\n";
+			}
+
+
 		}
 
 		auto start_ssprk33 = std::chrono::system_clock::now();

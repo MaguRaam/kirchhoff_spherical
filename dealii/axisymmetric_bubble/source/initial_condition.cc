@@ -13,10 +13,12 @@ double TanhRadial(double x,double y,double x0, double y0, double R0, double eps,
 
 Vector<double> initial_condition(Point <2> p, double h) {
 
-	//bubble radius:
-	double R0 = 0.25;
 
 	Vector<double> W(5);
+
+	
+  // bubble radius:
+  double R0 = 0.25;
 
 	double eps = 1.0e-5;
   double x0 = 0.0, y0 = 0.0; // Center of the bubble

@@ -1,44 +1,6 @@
 #include "kirchhoff.h"
 
 
-//Monopole solution:
-class SphericalWave{
-
-public:
-    
-    //constructor:
-    SphericalWave(double c0, double f0) : c0(c0), f0(f0), t0(4.0/f0){}
-
-    //pressure p
-    double p(double r, double t){
-
-		return source(t - r/c0)/(4.0*M_PI*r);
-    }
-
-    //pressure derivative dp/dr:
-    double dpdr(double r, double t){
-        
-		return source_derivative(t - r/c0)/(-c0*4.0*M_PI*r) + source(t - r/c0)*(-0.25/(M_PI*r*r));
-    }
-
-    //pressure derivative dp/dt:
-    double dpdt(double r, double t){
-        
-		return source_derivative(t - r/c0)/(4.0*M_PI*r);
-    }
-
-private:
-
-	double source(double t){return -2.0*(t - t0)*f0*f0*exp( -1.0*f0*f0*(t - t0)*(t - t0));}
-	double source_derivative(double t){return -1.0*f0*f0*f0*f0*(-2.0*t + 2.0*t0)*(2*t - 2*t0)*exp(-1.0*f0*f0*(t - t0)*(t - t0)) - 2.0*f0*f0*exp(-1.0*f0*f0*(t - t0)*(t - t0));}
-	
-	const double c0;
-    const double f0;
-	const double t0;
-};
-
-
-
 int main()
 {
 
@@ -57,7 +19,7 @@ int main()
     const double dt = 0.001;
 
     // no of cells along theta and phi direction:
-    const int n_theta = 5234;
+    const int n_theta = 5000;
     const int n_phi = 2 * n_theta;
 
     // create theta and phi grid points:
@@ -77,13 +39,11 @@ int main()
     auto [rq, cosq] = compute_distance_angle(xq, xo);
 
     // write Kirchhoff data:
-    std::ofstream observer("pressure.dat", std::ios::out);
+    std::ofstream observer("p_kirchhoff.dat", std::ios::out);
     observer.flags(std::ios::dec | std::ios::scientific);
     observer.precision(16);
     
-    //exact solution
-  	SphericalWave wave(c, 100.);
-
+    
     // loop over observer time and compute Kirchhoff integral
     while (to < tf)
     {
@@ -91,7 +51,7 @@ int main()
 
         auto tauq = compute_emission_time(xq, xo, to, c);
 
-        observer << to << "\t" << compute_kirchhoff_integral(rq, cosq, tauq, theta, t, p, pr, R, c) << "\t"<< wave.p(norm(xo), to) << std::endl;
+        observer << to << "\t" << compute_kirchhoff_integral(rq, cosq, tauq, theta, t, p, pr, R, c) << std::endl;
 
         to += dt;
     }

@@ -52,7 +52,7 @@ int main()
     const Point xo{3.0, 3.0, 3.0};
 
     // observer time:
-    double to = 0.04;
+    double to = 0.0;
     const double tf = 0.1;
     const double dt = 0.001;
 
