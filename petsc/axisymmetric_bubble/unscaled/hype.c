@@ -33,8 +33,8 @@ int main(int argc,char **argv) {
     Ctx.x_max           =  10.0*R0;
     Ctx.y_min           =  0.0;
     Ctx.y_max           =  10.0*R0;
-    Ctx.N_x             =  500;
-    Ctx.N_y             =  250;
+    Ctx.N_x             =  2000;
+    Ctx.N_y             =  1000;
     Ctx.CFL             =  0.9;
     Ctx.InitialStep     =  0;
     Ctx.InitialTime     =  0.0;
@@ -51,10 +51,10 @@ int main(int argc,char **argv) {
     //set kirchhoff parameters:
 
     Ctx.KirchhoffWriteInterval = 10;
-    Ctx.surface.Rk      =  6.0*R0;
-    Ctx.surface.Nk      =  500;
-    Ctx.io              =  250;
-    Ctx.jo              =  225;
+    Ctx.surface.Rk      =  5.0*R0;
+    Ctx.surface.Nk      =  2000;
+    Ctx.zo              =  0.0;
+    Ctx.ro              =  7.0*R0;
 
     //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // No need to change anything beyond this point 

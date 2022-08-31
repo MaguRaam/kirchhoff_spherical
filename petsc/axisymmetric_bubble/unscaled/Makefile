@@ -7,7 +7,7 @@ OBJ        = $(SRC:.c=.o)
 CLEANFILES = $(TARGET)
 LOCDIR     = $(CURDIR)
 
-PETSC_DIR=/scratch/mecmagur/library/petsc
+PETSC_DIR=/scratch/meckupa/Softwares/petsc
 
 include ${PETSC_DIR}/lib/petsc/conf/variables
 include ${PETSC_DIR}/lib/petsc/conf/rules

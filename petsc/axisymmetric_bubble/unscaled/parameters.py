@@ -29,26 +29,21 @@ zmin    =  -10.0*R
 zmax    =   10.0*R
 rmin    =   0
 rmax    =   10.0*R
-Nz      =   500
-Nr      =   250
+Nz      =   2000
+Nr      =   1000
 h       =   (zmax - zmin)/Nz
 
 print("cell size = ", h)
 print("no of cells/Radius of the bubble = ", R/h)
 
 #spherical kirchhoff surface
-Rk       =   6.0*R                           #radius of semicircle arc
-Lk       =   math.pi*Rk                     #length of semicircle arc
-
+Rk       =   5.0*R                           #radius of semicircle arc
+Lk       =   math.pi*Rk                      #length of semicircle arc
+Nk       =   2000                            #no of quadrature points
 
 #observer point location:
-io = 250
-jo = 225
-
-print("zo = ", zmin + (io + 0.5)*h)
-print("ro = ", rmin + (jo + 0.5)*h)
-print("Kirchhoff surface Rk = ", Rk)
-
+zo = 0.0
+ro = 7.0*R
 
 #speed of sound
 print("speed of sound in water = ", math.sqrt(g1*(p1 + p_inf1)/rho1) );

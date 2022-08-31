@@ -188,27 +188,27 @@ PetscErrorCode MonitorFunction (TS ts,PetscInt step, PetscReal time, Vec U, void
     //Write the perturbation pressure p' = (p - p0) at the observer grid point:
     Field   **u;
     PetscReal Q[nVar], V[nVar];
-    PetscInt    xs, ys, xm, ym, i, j;
+    PetscInt    xs, ys, xm, ym, i, j, io, jo;
     ierr = DMDAGetCorners(da, &xs, &ys, NULL, &xm, &ym, NULL);CHKERRQ(ierr);
     ierr = DMDAVecGetArrayRead(da, U, &u); CHKERRQ(ierr); 
 
-    for (j = ys; j < ys+ym; ++j) {
-        for (i = xs; i < xs+xm; ++i) {
+    //Compute cell index of observer point:
+    io = GetCellIndex(Ctx->zo, Ctx->x_min, Ctx->h);
+    jo = GetCellIndex(Ctx->ro, Ctx->y_min, Ctx->h);
 
-            if (i == Ctx->io && j == Ctx->jo)
-            {
-                for (PetscInt c = 0 ; c < nVar; ++c)
-                    Q[c] = u[j][i].comp[c];
+    //check if the observer point is in the current process:
+    if (io >= xs &&  io < xs+xm && jo >= ys &&  jo < ys+ym){
 
-                //get primitive variables from conserved variables:
-                PDECons2Prim(Q, V);
+        for (PetscInt c = 0 ; c < nVar; ++c)
+            Q[c] = u[jo][io].comp[c];
 
-                //write p' = (p - p0):
-                FILE *f = fopen("kirchhoff/p_weno.dat", "a+");
-                ierr = PetscFPrintf(PETSC_COMM_SELF, f, "%.12e\t%.12e\n", time, V[3] - p0); CHKERRQ(ierr);
-                fclose(f);
-            }
-        }
+        //get primitive variables from conserved variables:
+        PDECons2Prim(Q, V);
+
+        //write p' = (p - p0):
+        FILE *f = fopen("kirchhoff/p_weno.dat", "a+");
+        ierr = PetscFPrintf(PETSC_COMM_SELF, f, "%.12e\t%.12e\n", time, V[3] - p0); CHKERRQ(ierr);
+        fclose(f);
     }
 
     ierr = DMDAVecRestoreArrayRead(da, U, &u); CHKERRQ(ierr);

@@ -1,27 +1,27 @@
 #include "kirchhoff.h"
 
-//Note there is a catch in this code emission time must be greater than 0:
-//TODO add a c++ assertion to this
-
 int main()
 {
 
     // wave speed:
-    const double c = 162.61611236282832;
+    const double c = 66.53119569044284;
 
+		// bubble radius:
+		const double R0 = 0.038;
+	
     // radius of sphere:
-    const double R = 0.22799999999999998;
+    const double R = 5*R0;
 
     // observer point:
-    const Point xo{0.34276, 0.0, 0.0007600000000000384};
+    const Point xo{7*R0, 0.0, 0.0};
 
     // observer time:
     double to = 0.00;
-    const double tf = 0.007;
+    const double tf = 0.008;
     const double dt = 0.0001;
 
     // no of cells along theta and phi direction:
-    const int n_theta = 500;
+    const int n_theta = 2000;
     const int n_phi = 2 * n_theta;
 
     // create theta and phi grid points:

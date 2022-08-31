@@ -25,33 +25,20 @@
 #include <petscdraw.h>
 #include <petsctime.h>
 #include <petscdmda.h>
-#include <petscdmswarm.h>
 
 //----------------------------------------------------------------------------
 // Various constants used throught the code 
 //----------------------------------------------------------------------------
 
-#define nVar 5      /* Number of components in the PDE system */ 
+#define nVar 1      /* Number of components in the PDE system */ 
 #define DIM 2       /* Dimensions of the problem */
 #define nDOF 10     /* Number of degrees of freedom polynomial expansion in a cell */
 
-// Physical Constants 
 
-
-static const PetscReal g1            = 4.4;     /* Stiffness constant of the solid phase */
-static const PetscReal g2            = 1.4;     /* Stiffness constant of the gas phase */
-static const PetscReal p1            = 6000.0;  /* Specific heat ratio of the solid phase */
-static const PetscReal p2            = 0.0;     /* Specific heat ratio of the gas phase */
-static const PetscReal p0            = 1.0e6;   /* Initial pressure outside the bubble*/
-static const PetscReal mu1           = 0.0;     /* Dynamic viscosity of first phase */
-static const PetscReal mu2           = 0.0;;    /* Dynamic viscosity of second phase */
-
-static const PetscReal prs_floor     = 1.0e-12; /* Pressure floor value */
-static const PetscReal rho_floor     = 1.0e-14; /* Density floor value */
 static const PetscReal small_num     = 1.0e-12; /* Effective small number in the code */
 static const PetscInt  s_width       = 5;       /* Width of the stencil */ 
+static const PetscReal c0    = 250.0;             /* Wave speed*/
 
-static const PetscReal R0             = 0.038;   /* Bubble radius*/
 
 // Mid-point Rule  (One-point gauss quadrature)
 
@@ -247,6 +234,9 @@ void set_element_7d(array7d*, PetscInt, PetscInt, PetscInt, PetscInt, PetscInt, 
 PetscReal get_element_7d(array7d*, PetscInt, PetscInt, PetscInt, PetscInt, PetscInt, PetscInt, PetscInt);
 void min_max_7d(array7d*, PetscReal*, PetscReal*);
 
+
+
+
 //----------------------------------------------------------------------------------
 // Structure to store data for Kirchhoff semi-circular arc 
 //----------------------------------------------------------------------------------
@@ -282,7 +272,6 @@ typedef struct {
     PetscReal y_max;                  /* y-coordinate of the domain ending */
     PetscInt N_x;                     /* No. of cells in the x-direction */
     PetscInt N_y;                     /* No. of cells in the y-direction */
-    PetscReal CFL;                    /* CFL condition, should be less than 0.5 */
     PetscReal dt;                     /* Time step size */
     PetscReal h;                      /* Grid size */
     PetscBool Restart;                /* Whether to start from restart file */
@@ -290,7 +279,6 @@ typedef struct {
     PetscReal InitialTime;            /* Initial time of the simulation */
     PetscReal FinalTime;              /* Final time of the simulation */
     PetscInt WriteInterval;           /* No. of time steps after which data should be written */
-    PetscInt KirchhoffWriteInterval;  /* No. of time steps after which Kirchhoff data should be written */
     PetscInt RestartInterval;         /* No. of time steps after which restart file should be written */
     enum bndry_type left_boundary;    /* Boundary condition on the left face */
     enum bndry_type right_boundary;   /* Boundary condition on the right face */
@@ -312,27 +300,11 @@ typedef struct {
     
     Kirchhoff surface;                /* Object to store data for Kirchhoff surface*/
     
-    PetscReal zo;                     /*observer location in x direction*/
-    PetscReal ro;                     /*observer location in y direction*/
-    
+    PetscReal xo;
+    PetscReal yo;
+    PetscReal zo;
+
 } AppCtx;
-
-//----------------------------------------------------------------------------
-// Functions related to PDE
-//----------------------------------------------------------------------------
-
-void PDECons2Prim(const PetscReal*, PetscReal*);
-void PDEPrim2Cons(const PetscReal*, PetscReal*);
-
-/* Input variables are primitive variables */
-
-PetscReal PDEFluxPrim(const PetscReal*, const PetscReal, const PetscReal, const PetscReal,  const PetscReal, PetscReal*);
-PetscBool PDECheckPADPrim(const PetscReal*);
-PetscReal PDEViscFluxPrim(PetscReal,const PetscReal*, const PetscReal grad_V[nVar][DIM], PetscReal, PetscReal, PetscReal*);
-PetscReal HLLCRiemannSolver(const PetscReal*, const PetscReal*, const PetscReal, const PetscReal, const PetscReal,  const PetscReal, PetscReal*);
-PetscReal rotHLLCRiemannSolver(const PetscReal*, const PetscReal*, const PetscReal, const PetscReal, const PetscReal,  const PetscReal, PetscReal*);
-PetscReal ViscLLFRiemannSolverPrim(PetscReal,const PetscReal*, PetscReal grad_VL[nVar][DIM], const PetscReal*, PetscReal grad_VR[nVar][DIM], const PetscReal, const PetscReal, PetscReal*);
-void PDESource(PetscReal, const PetscReal*, const PetscReal*, const PetscReal*, PetscReal*);
 
 //----------------------------------------------------------------------------
 // WENO reconstruction 
@@ -345,25 +317,22 @@ void weno(const PetscReal U_x[], const PetscReal U_y[], const PetscReal U_xy[], 
 PetscReal evaluate_polynomial(const PetscReal x, const PetscReal y, const PetscReal coeffs[]);
 void evaluate_grad(const PetscReal coeffs[], PetscReal x, PetscReal y, const PetscReal h, PetscReal* grad_x, PetscReal* grad_y);
 
+
 //----------------------------------------------------------------------------
 // Main functions related to the solver 
 //----------------------------------------------------------------------------
+Field Pressure(PetscReal, PetscReal, PetscReal, PetscReal);
+PetscErrorCode  ComputePressureExact(Vec, DM, PetscReal, const AppCtx);
+PetscErrorCode WriteVtk(DM, Vec, PetscInt);
 
-void InitialCondition(PetscReal, PetscReal, PetscReal*);
-PetscErrorCode InitializeSolution(Vec, DM, AppCtx);
-PetscErrorCode RHSFunction(TS, PetscReal, Vec, Vec, void*);
-PetscErrorCode RHSFunctionPrim(TS, PetscReal, Vec, Vec, void*);
-PetscErrorCode MonitorFunction (TS, PetscInt, PetscReal, Vec, void*);
-PetscErrorCode ErrorNorms(Vec, DM, AppCtx, PetscReal*, PetscReal*);
-PetscErrorCode ComputePrimitiveVariables(Vec, Vec, DM);
+
 
 //----------------------------------------------------------------------------
-// Functions related to the Kirchhoff line surface 
+// Functions related to the Kirchhoff semi-circular arc 
 //----------------------------------------------------------------------------
 PetscErrorCode ComputeNofQuadPoints(DM, AppCtx*);
 PetscErrorCode AllocateKirchhoffData(DM, AppCtx*);
 PetscErrorCode WriteKirchhoffData(Vec, DM, AppCtx*, PetscReal);
 PetscErrorCode FreeKirchhoffData(AppCtx*);
-PetscInt GetCellIndex(PetscReal, PetscReal, PetscReal);
 
 #endif /* HYPE_H_ */ 
