@@ -1,0 +1,4 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'tmp/convergence.blg'
+[113] biber:340> INFO - === Wed Oct  5, 2022, 12:34:03
+[135] Biber.pm:418> INFO - Reading 'tmp/convergence.bcf'
