@@ -52,9 +52,9 @@ An air bubble of radius $R$ is placed in a water medium, assuming the fluid to b
 \begin{tikzpicture}
     \draw (0, 0) -- (6.0,0);
     \draw [red, thick, dashed] (0, 0) circle (1);
-    \draw (1.2, -0.2) node {$R$};
+    \draw (1.7, -0.2) node {$R = 1mm$};
     \draw (3.2, -0.2) node {$r$};
-    \draw (5.8, -0.2) node {$10R$};
+    \draw (5.8, -0.2) node {$1000R$};
     \draw (0.0, 0.3) node {Air};
     \draw (5.0, 0.3) node {Water};
     \draw (0.0, -0.2) node {0};
@@ -70,10 +70,54 @@ An air bubble of radius $R$ is placed in a water medium, assuming the fluid to b
 \end{tikzpicture}
 \caption{Schematic of air bubble in water medium with the initial conditions.}
 \end{figure}
-Where radius of the bubble $R = 1 mm$.
 
 \subsection*{Boundary condition}
 We enforce homogeneous Neumann boundary condition at both ends of the domain $\frac{\partial(*)}{\partial r}\Big |_0 = \frac{\partial(*)}{\partial r}\Big |_L = 0$.
 
+\subsection*{Scaling}
+Let $\bar{p}$ be the pressure scale, $\bar{\rho}$ be the density scale and $\bar{x}$ be the length scale. Then
+\begin{equation}
+    p = \bar{p}p_s, \;\;\;\; \rho = \bar{\rho} \rho_s, \;\;\;\; x = \bar{l}x_s. 
+\end{equation}
+Where $p_s, \rho_s$ and $x_s$ are the scaled pressure, density and length. We can obtain the velocity and time scale from the above scales.
+\begin{equation}
+    \frac{M}{LT^2} = \bar{p}\frac{M_s}{L_sT^2_s}, \;\;\;\; \frac{M}{L^3} = \bar{\rho}\frac{M_s}{L^3_s}.
+\end{equation}
+From the above relations we can obtain,
+\begin{equation}
+    \frac{L}{T} = \sqrt{\frac{\bar{p}}{\bar{\rho}}}\frac{L_s}{T_s}
+\end{equation}
+Therefore the velocity and time scale is given by
+\begin{equation}
+    v = \sqrt{\frac{\bar{p}}{\bar{\rho}}} v_s, \;\;\;\; t = \bar{l} \sqrt{\frac{\bar{\rho}}{\bar{p}}} t_s. 
+\end{equation}
+For the bubble problem we use the following scales,
+\begin{equation}
+    \bar{p} = 10^6Pa, \;\;\;\; \bar{\rho} = 1000 kgm^{-3}, \;\;\;\; \bar{l} = 10^{-3} m.
+\end{equation}
+The scaled initial conditions are
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+        \draw (0, 0) -- (6.0,0);
+        \draw [red, thick, dashed] (0, 0) circle (1);
+        \draw (1.5, -0.2) node {$R = 1$};
+        \draw (3.2, -0.2) node {$r$};
+        \draw (5.8, -0.2) node {$1000R$};
+        \draw (0.0, 0.3) node {Air};
+        \draw (5.0, 0.3) node {Water};
+        \draw (0.0, -0.2) node {0};
+        \draw (0.0, 3.0) node {$\rho_a^s = 0.001$};
+        \draw (0.0, 2.5) node {$p_a^s = 0.1 $};
+        \draw (0.0, 2.0) node {$\gamma_a = 1.4$};
+        \draw (0.0, 1.5) node {$P^{\infty}_a = 0.0$};
+    
+        \draw (5.0, 3.0) node {$\rho_w^s = 1$};
+        \draw (5.0, 2.5) node {$p_w^s = 1.0 $};
+        \draw (5.0, 2.0) node {$\gamma_w = 4.4$};
+        \draw (5.0, 1.5) node {$P^{\infty}_w = 600 $};
+    \end{tikzpicture}
+    \caption{Schematic of air bubble in water medium with the initial conditions.}
+    \end{figure}
 
 \end{document}

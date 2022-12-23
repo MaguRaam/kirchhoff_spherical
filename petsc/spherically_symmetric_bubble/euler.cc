@@ -23,6 +23,7 @@
 #include <array>
 #include <map>
 #include <utility>
+#include <string>
 //#define BOOST_DISABLE_ASSERTS
 #include "boost/multi_array.hpp"
 
@@ -37,14 +38,15 @@ const int nLin = 2;             // Number of linear degenerate fields in the PDE
 
 const double gamma_1       = 4.4;     // Specific heat ratio of the liquid phase //
 const double gamma_2       = 1.4;     // Specific heat ratio of the gas phase //
-const double P_1           = 6.0e8;   // Stiffness constant of the liquid phase //
+const double P_1           = 600.0;   // Stiffness constant of the liquid phase //
 const double P_2           = 0.0;     // Stiffness constant of the gas phase //
 const double prs_floor     = 1.0e-12; // Pressure floor value //
 const double rho_floor     = 1.0e-14; // Density floor value //
 const double small_num     = 1.0e-12; // Effective small number in the code //
 const int  dofs_per_cell   = 2;       // Number of degrees of freedom polynomial expansion in a cell //
 
-const double R0            = 0.001;   // Bubble radius //
+const double R0            = 1.0;     // Bubble radius //
+const double p_farfield    = 1.0;     // ambient pressure in the water medium
 
 typedef multi_array<double, 2> Matrix;
 typedef multi_array<double, 1> Vector;
@@ -404,13 +406,13 @@ Vector initial_condition(double x) {
     Vector V0(extents[nVar]);
 
     double smear = 1.0;
-    double h = 100.0 * R0 / 5000.0;
+    double h = .01;
 
-    double p_medium = 1.0e6;  // pressure in the water medium
-    double p_b = 1.0e5;       // Pressure in the air bubble
+    double p_medium = 1.0;  // pressure in the water medium
+    double p_b = 0.1;       // Pressure in the air bubble
 
-    double rho_medium = 1000.0; // density of the water medium
-    double rho_b = 1.0;         // density of the air bubble
+    double rho_medium = 1.0; // density of the water medium
+    double rho_b = 0.001;    // density of the air bubble
 
     V0[0] = TanhRadial(x, R0, smear*h, rho_b, rho_medium);
     V0[1] = 0.0; 
@@ -449,15 +451,18 @@ class HyPE_1D {
     int time_step;
     int rk_stage;
 
+    std::vector<int> kirchhoff_cell;
+
     void initialize();
     void apply_boundary_conditions();
     void limit_solution();
     void compute_rhs(double);
     void solve();
     void plot(int, unsigned int = 4) const;
+    void write_kirchhoff_data() const;
 
 public:
-    HyPE_1D(AppCtx);
+    HyPE_1D(AppCtx, const std::vector<int>& kirchhoff_cell);
     void run();
 };
 
@@ -465,7 +470,7 @@ public:
 // Constructor
 //----------------------------------------------------------------------------
 
-HyPE_1D::HyPE_1D(AppCtx params) :
+HyPE_1D::HyPE_1D(AppCtx params, const std::vector<int>& kirchhoff_cell) :
     U(boost::extents[params.N_cells + 6][nVar]),
     Dp(boost::extents[params.N_cells + 1]),
     Dm(boost::extents[params.N_cells + 1]),
@@ -480,7 +485,8 @@ HyPE_1D::HyPE_1D(AppCtx params) :
     dt(0.0),
     time(0.0),
     time_step(0),
-    rk_stage(0)
+    rk_stage(0),
+    kirchhoff_cell(kirchhoff_cell)
     {
 
     // Initialize the grid
@@ -737,9 +743,14 @@ void HyPE_1D::solve() {
         printf ("time = %4.3e, dt = %4.3e, final time = %4.3e\n", time, dt, Params.FinalTime);
 
 
-        if (Params.write_interval != 0)
+        //! Uncomment it if you want to write data at every interval: 
+        /* if (Params.write_interval != 0)
             if (time_step % Params.write_interval == 0)
-                plot(time_step);
+                plot(time_step); 
+        */
+
+        // Write Kirchhoff pressure data:
+        write_kirchhoff_data();
 
         //  Stage 1
 
@@ -838,6 +849,47 @@ void HyPE_1D::plot(int i, unsigned int digits) const {
     out_data.close();
 }
 
+
+//----------------------------------------------------------------------------
+// Write pressure and radial pressure derivative at Kirchhoff surface radius
+//----------------------------------------------------------------------------
+
+void HyPE_1D::write_kirchhoff_data() const{
+
+    Vector V(extents[nVar]), VR(extents[nVar]), VL(extents[nVar]); 
+    Vector Q(extents[nVar]), QR(extents[nVar]), QL(extents[nVar]);
+
+    // loop over Kirchhoff radius:
+    for (const auto& i : kirchhoff_cell){
+
+        //get conserved variables at cell i, i+1 and i-1
+        for (int c = 0; c < nVar; ++c) {
+            Q[c] = U[i][c][0];
+            QL[c] = U[i-1][c][0];
+            QR[c] = U[i+1][c][0];
+        }
+
+        //convert conserved to primitive
+        Cons2Prim(Q, V);
+        Cons2Prim(QR, VR);
+        Cons2Prim(QL, VL);
+
+        // compute radius of Kirchhoff surface:
+        double radius = Params.x_min + (static_cast<double>(i)+0.5)*dx;
+
+        // open the data file:
+        std::ofstream file("data/R=" + std::to_string(radius) + ".dat", std::ios::app);
+        file.flags(std::ios::dec | std::ios::scientific);
+        file.precision(16);
+
+        // write t, p and pr:
+        file << time << "\t" << V[2] - p_farfield << "\t" << 0.5*(VR[2] - VL[2] )/dx << "\n";
+
+    }
+
+}
+
+
 //----------------------------------------------------------------------------
 // Put everything together and run the problem
 //----------------------------------------------------------------------------
@@ -870,16 +922,19 @@ int main() {
     AppCtx Params;
 
     Params.x_min = 0.0;
-    Params.x_max = 100*R0;
+    Params.x_max = 1000*R0;
     Params.CFL   = 0.8;
     Params.InitialTime = 0.0;
-    Params.FinalTime = 1000.0e-6;
-    Params.N_cells = 5000;
-    Params.write_interval = 40;
+    Params.FinalTime = 20.0;
+    Params.N_cells = 100000;
+    Params.write_interval = 200;
     Params.left_boundary  = transmissive;
     Params.right_boundary = transmissive;
 
-    HyPE_1D Effective_Gamma(Params);
+    //kirchhoff surface radius:
+    std::vector<int> kirchhoff_cell{5000, 10000, 20000, 40000, 60000, 80000, 90000};
+
+    HyPE_1D Effective_Gamma(Params, kirchhoff_cell);
 
     Effective_Gamma.run();
     

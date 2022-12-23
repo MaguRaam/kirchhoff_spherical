@@ -5,22 +5,25 @@ from math import sqrt
 
 ############################################################################################### 
 
-p_inf     = 1.0e6   # Pressure of liquid far away from the bubble 
-rho_inf   = 1000.0  # Density of liquid 
+p_inf     = 1.0     # Pressure of liquid far away from the bubble 
+rho_inf   = 1.0     # Density of liquid 
 gamma_inf = 4.4     # Ratio of specific heats of the liquid 
-pi_inf    = 6.0e8   # Stiffness constant of the liquid 
+pi_inf    = 600.0   # Stiffness constant of the liquid 
 c_inf = sqrt(gamma_inf*(p_inf+pi_inf)/rho_inf) # Speed of sound in the liquid 
 mu = 0.0            # Viscosity of the liquid
 S = 0.0             # interface surface tension
 
+print("speed of sound in water = ", c_inf)
+
 ############################################################################################### 
 
-p0    = 1.0e5       # Initial pressure inside the bubble  
+p0    = 0.1         # Initial pressure inside the bubble  
 gamma = 1.4 		# Ratio of specific heats inside the bubble 
-R0    = 0.001       # Initial radius of the bubble 
+R0    = 1.0         # Initial radius of the bubble 
 R0dot = 0.0         # Initial velocity of the bubble interface 
 
 Tc = 0.915*R0*sqrt(rho_inf/(p_inf-p0))  # Rayleigh collapse time 
+
 ############################################################################################### 
 
 def kellerMiksis(y, t):
@@ -77,13 +80,13 @@ sol = odeint(kellerMiksis, y0, t)
 R = sol[:,0]
 Rdot = sol[:,1]
 
+print("final time tf = ", tf)
 
-#tN,pN,V_B = np.loadtxt('Data1.csv', delimiter=',', unpack=True)
-#RN = np.cbrt(0.75*V_B/np.pi)
+tN,RN = np.loadtxt('bubble_radius.csv', delimiter=',', unpack=True)
 
 plt.plot(t/Tc,R/R0, color='black', label='Keller-Miksis')
-#plt.plot(tN/Tc,RN/R0, marker='o', color='blue', linestyle='None', markersize=3, markerfacecolor='None', label='6-Eqn-Model')
-plt.grid()
+plt.plot(tN/Tc,RN/R0, marker='o', color='blue', linestyle='None', markersize=3, markerfacecolor='None', label='Multiphase solver')
+#plt.grid()
 plt.xlabel(r'$t/T_c$')
 plt.ylabel(r'$R/R_0$')
 plt.title('Bubble Collapse')
