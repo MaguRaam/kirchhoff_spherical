@@ -13,6 +13,25 @@ def plot(fileName):
     phi = data[:, 4]
     p_acoustic = np.subtract(p, 1.0)
 
+		#plot velocity	
+	
+    fig, ax1 = plt.subplots()
+
+    ax2 = ax1.twinx()
+    ax1.plot(x, u, 'b-')
+    ax2.plot(x, phi, 'r-')
+
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('velocity', color='b')
+    ax2.set_ylabel(r'$\alpha$', color='r')
+
+    outFile = fileName.replace("csv", "png")
+    outFile = outFile.replace("sol", "u")
+    plt.savefig(outFile, dpi=400)
+    plt.clf()
+    
+    #plot acoustic pressure:
+    
     fig, ax1 = plt.subplots()
 
     ax2 = ax1.twinx()
@@ -20,14 +39,16 @@ def plot(fileName):
     ax2.plot(x, phi, 'r-')
 
     ax1.set_xlabel('x')
-    ax1.set_ylabel('acoustic pressure, $p - p_0$', color='b')
+    ax1.set_ylabel('acoustic pressure $p - p_0$', color='b')
     ax2.set_ylabel(r'$\alpha$', color='r')
 
     outFile = fileName.replace("csv", "png")
+    outFile = outFile.replace("sol", "p")
     plt.savefig(outFile, dpi=400)
     plt.clf()
+    
 
 
 for fileName in os.listdir('.'):
-    print(fileName)
-    plot(fileName)
+    if fileName.endswith('.csv'):
+    	plot(fileName)

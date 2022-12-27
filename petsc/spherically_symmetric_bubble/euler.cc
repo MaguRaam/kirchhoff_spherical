@@ -33,6 +33,8 @@ using namespace boost;
 // Various constants used throught the code
 //----------------------------------------------------------------------------
 
+const int ncell_radius = 500;   // Number cells in radius of the bubble
+
 const int nVar = 4;             // Number of components in the PDE system //
 const int nLin = 2;             // Number of linear degenerate fields in the PDE system //
 
@@ -406,7 +408,7 @@ Vector initial_condition(double x) {
     Vector V0(extents[nVar]);
 
     double smear = 1.0;
-    double h = .01;
+    double h = 1.0/ncell_radius;
 
     double p_medium = 1.0;  // pressure in the water medium
     double p_b = 0.1;       // Pressure in the air bubble
@@ -458,7 +460,7 @@ class HyPE_1D {
     void limit_solution();
     void compute_rhs(double);
     void solve();
-    void plot(int, unsigned int = 4) const;
+    void plot(double) const;
     void write_kirchhoff_data() const;
 
 public:
@@ -744,10 +746,10 @@ void HyPE_1D::solve() {
 
 
         //! Uncomment it if you want to write data at every interval: 
-        /* if (Params.write_interval != 0)
+         if (Params.write_interval != 0)
             if (time_step % Params.write_interval == 0)
-                plot(time_step); 
-        */
+                plot(time); 
+        
 
         // Write Kirchhoff pressure data:
         write_kirchhoff_data();
@@ -811,12 +813,12 @@ std::string int_to_string (int value, const unsigned int digits) {
 }
 
 
-void HyPE_1D::plot(int i, unsigned int digits) const {
+void HyPE_1D::plot(double time) const {
 
     Vector V(extents[nVar]), Q(extents[nVar]);
 
     std::ofstream out_data;
-    const std::string filename = "plot/sol-" + int_to_string (i, digits) + ".csv";
+    const std::string filename = "plot/sol-" + std::to_string(time) + ".csv";
     out_data.open (filename);
     out_data.flags( std::ios::dec | std::ios::scientific );
     out_data.precision(6);
@@ -878,7 +880,7 @@ void HyPE_1D::write_kirchhoff_data() const{
         double radius = Params.x_min + (static_cast<double>(i)+0.5)*dx;
 
         // open the data file:
-        std::ofstream file("data/R=" + std::to_string(radius) + ".dat", std::ios::app);
+        std::ofstream file("kirchhoff/data/R=" + std::to_string(radius) + ".dat", std::ios::app);
         file.flags(std::ios::dec | std::ios::scientific);
         file.precision(16);
 
@@ -922,17 +924,17 @@ int main() {
     AppCtx Params;
 
     Params.x_min = 0.0;
-    Params.x_max = 1000*R0;
+    Params.x_max = 100*R0;
     Params.CFL   = 0.8;
     Params.InitialTime = 0.0;
-    Params.FinalTime = 20.0;
-    Params.N_cells = 100000;
-    Params.write_interval = 200;
+    Params.FinalTime = 10.0;
+    Params.N_cells = 100*ncell_radius;
+    Params.write_interval = 10000;
     Params.left_boundary  = transmissive;
     Params.right_boundary = transmissive;
 
     //kirchhoff surface radius:
-    std::vector<int> kirchhoff_cell{5000, 10000, 20000, 40000, 60000, 80000, 90000};
+    std::vector<int> kirchhoff_cell{5*ncell_radius, 10*ncell_radius, 20*ncell_radius, 30*ncell_radius, 50*ncell_radius, 70*ncell_radius, 90*ncell_radius, 100*ncell_radius};
 
     HyPE_1D Effective_Gamma(Params, kirchhoff_cell);
 

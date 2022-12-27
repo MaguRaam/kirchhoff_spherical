@@ -1,12 +1,12 @@
 # Fdb version 3
-["biber tmp/formulation"] 1671604511 "tmp/formulation.bcf" "tmp/formulation.bbl" "tmp/formulation" 1671606045
-  "tmp/formulation.bcf" 1671606045 106594 6da5286508b1ae7d2f64c27d551cfdc2 "pdflatex"
+["biber tmp/formulation"] 1672141286 "tmp/formulation.bcf" "tmp/formulation.bbl" "tmp/formulation" 1672141307
+  "tmp/formulation.bcf" 1672141307 106594 6da5286508b1ae7d2f64c27d551cfdc2 "pdflatex"
   (generated)
   "tmp/formulation.bbl"
   "tmp/formulation.blg"
-["pdflatex"] 1671606043 "/home/magu/Desktop/kirchhoff_sphere/petsc/spherically_symmetric/doc/formulation.tex" "tmp/formulation.pdf" "formulation" 1671606045
+["pdflatex"] 1672141302 "/home/magu/Desktop/kirchhoff_sphere/petsc/spherically_symmetric_bubble/doc/formulation.tex" "tmp/formulation.pdf" "formulation" 1672141307
   "/etc/texmf/web2c/texmf.cnf" 1661466382 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/magu/Desktop/kirchhoff_sphere/petsc/spherically_symmetric/doc/formulation.tex" 1671606043 5328 f3f7fdafb15d41ec6457ef758c7d4576 ""
+  "/home/magu/Desktop/kirchhoff_sphere/petsc/spherically_symmetric_bubble/doc/formulation.tex" 1672141299 8939 43cb7dc8ca758f8767ac11940e7d0b3b ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -30,6 +30,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -171,10 +172,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1661466673 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1661466736 2799788 7ebcdb05792828b9cf96071affb51f14 ""
-  "formulation.tex" 1671606043 5328 f3f7fdafb15d41ec6457ef758c7d4576 ""
-  "tmp/formulation.aux" 1671606045 563 76cae8d11a12f4f393658a6068dc506f "pdflatex"
-  "tmp/formulation.bbl" 1671604513 0 d41d8cd98f00b204e9800998ecf8427e "biber tmp/formulation"
-  "tmp/formulation.run.xml" 1671606045 2279 bb0a2ee5021ed998398dfb705a43a095 "pdflatex"
+  "formulation.tex" 1672141299 8939 43cb7dc8ca758f8767ac11940e7d0b3b ""
+  "images/Convergence.png" 1672140964 165400 89b1ae60e9c693c055a7d573fe5d2e33 ""
+  "images/kellermiksis.png" 1671622506 162369 43a591b257c45a6af9fdda784d44f67a ""
+  "tmp/formulation.aux" 1672141307 1182 1af8c32445b60bc31efee82fdd94c579 "pdflatex"
+  "tmp/formulation.bbl" 1672141287 0 d41d8cd98f00b204e9800998ecf8427e "biber tmp/formulation"
+  "tmp/formulation.run.xml" 1672141307 2279 bb0a2ee5021ed998398dfb705a43a095 "pdflatex"
   (generated)
   "tmp/formulation.aux"
   "tmp/formulation.bcf"
