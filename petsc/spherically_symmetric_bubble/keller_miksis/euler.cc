@@ -37,7 +37,7 @@ const int nLin = 2;             // Number of linear degenerate fields in the PDE
 
 const double gamma_1       = 4.4;     // Specific heat ratio of the liquid phase //
 const double gamma_2       = 1.4;     // Specific heat ratio of the gas phase //
-const double P_1           = 600.0;   // Stiffness constant of the liquid phase //
+const double P_1           = 6000.0;   // Stiffness constant of the liquid phase //
 const double P_2           = 0.0;     // Stiffness constant of the gas phase //
 const double prs_floor     = 1.0e-12; // Pressure floor value //
 const double rho_floor     = 1.0e-14; // Density floor value //
@@ -406,8 +406,8 @@ Vector initial_condition(double x) {
     double smear = 1.0;
     double h = .01;
 
-    double p_medium = 1.0;  // pressure in the water medium
-    double p_b = 0.1;       // Pressure in the air bubble
+    double p_medium = 100.0;  // pressure in the water medium
+    double p_b = 1.0;       // Pressure in the air bubble
 
     double rho_medium = 1.0; // density of the water medium
     double rho_b = 0.001;    // density of the air bubble
@@ -892,7 +892,7 @@ int main() {
     Params.x_max = 10*R0;
     Params.CFL   = 0.8;
     Params.InitialTime = 0.0;
-    Params.FinalTime = 1.68;
+    Params.FinalTime = 1.0;
     Params.N_cells = 1000;
     Params.write_interval = 40;
     Params.left_boundary  = transmissive;

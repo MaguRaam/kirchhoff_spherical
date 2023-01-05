@@ -33,14 +33,14 @@ using namespace boost;
 // Various constants used throught the code
 //----------------------------------------------------------------------------
 
-const int ncell_radius = 500;   // Number cells in radius of the bubble
+const int ncell_radius = 700;   // Number cells in radius of the bubble
 
 const int nVar = 4;             // Number of components in the PDE system //
 const int nLin = 2;             // Number of linear degenerate fields in the PDE system //
 
 const double gamma_1       = 4.4;     // Specific heat ratio of the liquid phase //
 const double gamma_2       = 1.4;     // Specific heat ratio of the gas phase //
-const double P_1           = 600.0;   // Stiffness constant of the liquid phase //
+const double P_1           = 6000.0;   // Stiffness constant of the liquid phase //
 const double P_2           = 0.0;     // Stiffness constant of the gas phase //
 const double prs_floor     = 1.0e-12; // Pressure floor value //
 const double rho_floor     = 1.0e-14; // Density floor value //
@@ -48,7 +48,7 @@ const double small_num     = 1.0e-12; // Effective small number in the code //
 const int  dofs_per_cell   = 2;       // Number of degrees of freedom polynomial expansion in a cell //
 
 const double R0            = 1.0;     // Bubble radius //
-const double p_farfield    = 1.0;     // ambient pressure in the water medium
+const double p_farfield    = 100.0;   // ambient pressure in the water medium
 
 typedef multi_array<double, 2> Matrix;
 typedef multi_array<double, 1> Vector;
@@ -410,8 +410,8 @@ Vector initial_condition(double x) {
     double smear = 1.0;
     double h = 1.0/ncell_radius;
 
-    double p_medium = 1.0;  // pressure in the water medium
-    double p_b = 0.1;       // Pressure in the air bubble
+    double p_medium = 100.0;  // pressure in the water medium
+    double p_b = 1.0;       // Pressure in the air bubble
 
     double rho_medium = 1.0; // density of the water medium
     double rho_b = 0.001;    // density of the air bubble
@@ -751,7 +751,7 @@ void HyPE_1D::solve() {
                 plot(time); 
         
 
-        // Write Kirchhoff pressure data:
+        // Write Kirchhoff pressure data:    
         write_kirchhoff_data();
 
         //  Stage 1
@@ -924,17 +924,17 @@ int main() {
     AppCtx Params;
 
     Params.x_min = 0.0;
-    Params.x_max = 100*R0;
-    Params.CFL   = 0.8;
+    Params.x_max = 500*R0;
+    Params.CFL   = 0.4;
     Params.InitialTime = 0.0;
     Params.FinalTime = 10.0;
-    Params.N_cells = 100*ncell_radius;
+    Params.N_cells = 200*ncell_radius;
     Params.write_interval = 10000;
     Params.left_boundary  = transmissive;
     Params.right_boundary = transmissive;
 
     //kirchhoff surface radius:
-    std::vector<int> kirchhoff_cell{5*ncell_radius, 10*ncell_radius, 20*ncell_radius, 30*ncell_radius, 50*ncell_radius, 70*ncell_radius, 90*ncell_radius, 100*ncell_radius};
+    std::vector<int> kirchhoff_cell{100*ncell_radius, 150*ncell_radius};
 
     HyPE_1D Effective_Gamma(Params, kirchhoff_cell);
 

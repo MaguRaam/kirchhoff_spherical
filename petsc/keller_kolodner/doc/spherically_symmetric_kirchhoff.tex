@@ -1,0 +1,85 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{amsmath, latexsym}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{bigints}
+\usepackage{float}
+\usepackage{titling}
+\usepackage[percent]{overpic}
+\usepackage[para]{footmisc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[style=authoryear,sorting=nty,maxcitenames=1]{biblatex}
+\addbibresource{references.bib}
+
+\title{Kirchhoff formula for spherically symmetric acoustic problem}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section*{Formulation}
+\begin{figure}[h!]\label{schematic}
+    \centering
+    \begin{tikzpicture}
+        \draw [-stealth](0, 0) -- (8.0,0);
+        \draw [black, thick, fill] (0, 0.0) circle (0.05);
+        \draw [red, thick, fill] (3, 0.0) circle (0.05);
+        \draw (4.5, 0.5) node {$\phi(r, t)$};
+        \draw (5.5, -0.22) node {$r$};
+        \draw (3.0, -0.22) node {$R$};
+    \end{tikzpicture}
+\end{figure}
+In this work we derive the Kirchhoff integral formula for spherically symmetric acoustic problems. We assume the wave propogates linearly in the region $r > R$ and write down the spherically symmetric wave equation
+\begin{equation}\label{wave}
+    \frac{1}{c^2}(\phi)_{tt} - (\phi)_{rr} - \frac{2\phi_r}{r} = 0 \;\;\;\; r > R.
+\end{equation}
+We define a generalised variable $\phi H(r - R)$ using the Heaviside function:
+\begin{equation}
+	\phi H(r - R) =\begin{cases}
+	\phi , & \text{for $r > R$}.\\
+	0, & \text{for $r < R$ }.
+	\end{cases}
+\end{equation}
+The wave equation in generalised variable is given by
+\begin{equation}\label{generalised_wave}
+    \frac{1}{c^2}(\phi H(r - R))_{tt} - (\phi H(r - R))_{rr} - \frac{2(\phi H(r - R))_r}{r} = s(r, t) \;\;\;\; r > 0.
+\end{equation}
+Where $s(r, t)$ is the source term given by
+\begin{equation}
+    s(r,t) = - \phi_{r}\delta(r - R) - (\phi \delta (r - R))_r - \frac{2\phi \delta(r - R)}{r}.
+\end{equation}
+
+Unlike (\ref{wave}), the generalised wave equation $(\ref{generalised_wave})$ is valid over the entire space. So we can use the free space Green's function to solve the equation. The Green's function for the wave operator in ($\ref{wave}$) is given by
+\begin{equation}
+    G(r, t; r', t') = \frac{1}{4\pi |r - r'|}\delta \Big(t - t' - \frac{|r - r'|}{c}\Big). 
+\end{equation}
+We can solve the wave equation (\ref{generalised_wave}) by convolution of source and the Green's function.
+\begin{equation}
+    \phi(r, t) H(r - R) = \int_{t'}\int_{r'}s(r', t')G(r, t; r', t')dr'dt'
+\end{equation}
+\begin{equation}
+    \begin{split}
+        \phi H(r - R) = &-\frac{1}{4\pi}\int_{t'}\int_{r'} \phi_{r'}\delta(r' - R) \frac{\delta \Big(t - t' - \frac{|r - r'|}{c}\Big)}{|r - r'|} dr'dt'\\
+                        &-\frac{1}{4\pi}\int_{t'}\int_{r'} (\phi \delta (r' - R))_{r'} \frac{\delta \Big(t - t' - \frac{|r - r'|}{c}\Big)}{ |r - r'| }dr'dt'\\
+                        &-\frac{1}{4\pi}\int_{t'}\int_{r'} \frac{2\phi \delta(r' - R)}{r'}\frac{\delta \Big(t - t' - \frac{|r - r'|}{c}\Big)}{ |r - r'| }dr'dt'.
+    \end{split}
+\end{equation}
+We simplify the above equations using the delta function property
+\begin{equation}
+    \phi H(r - R) = -\frac{\phi_{r}(R, \tau)}{4\pi  |r - R|} - \frac{1}{4\pi}\Big(\frac{\phi (R, \tau)}{|r - R|}\Big)_r   - \frac{1}{4\pi} \frac{2\phi(R, \tau)}{R |r - R|}.
+\end{equation}
+Where $\tau = t - \frac{|r - R|}{c}$ is the retarded time. Simplifying further we obtain
+\begin{equation}
+    \phi(r, t) = -\frac{1}{4\pi (r - R)}\Big[ \phi_{r}(R, \tau) - \frac{1}{c}\phi_t (R, \tau) - \frac{\phi(R, \tau)}{(r - R)}  + \frac{2 \phi(R, \tau)}{R} \Big] \;\;\;\;\; r > R.
+\end{equation}
+
+
+
+\end{document}
+

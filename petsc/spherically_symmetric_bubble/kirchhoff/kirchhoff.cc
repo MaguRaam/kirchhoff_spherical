@@ -321,7 +321,7 @@ double compute_kirchhoff_integral(const boost::multi_array<double, 2> &rq, const
 int main()
 {
     // wave speed in the water medium:
-    const double c = 51.423729930840295;
+    const double c = 163.82917933017916;
 
     // radius of sphere:
     const double R = 5.001;

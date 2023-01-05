@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[1] Config.pm:310> INFO - Logfile is 'tmp/spherically_symmetric_kirchhoff.blg'
+[107] biber:340> INFO - === Thu Jan  5, 2023, 16:33:38
+[127] Biber.pm:418> INFO - Reading 'tmp/spherically_symmetric_kirchhoff.bcf'
+[244] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
+[266] bbl.pm:654> INFO - Writing 'tmp/spherically_symmetric_kirchhoff.bbl' with encoding 'UTF-8'
+[266] bbl.pm:757> INFO - Output to tmp/spherically_symmetric_kirchhoff.bbl
+[266] Biber.pm:130> WARN - The file 'tmp/spherically_symmetric_kirchhoff.bcf' does not contain any citations!
+[266] Biber.pm:132> INFO - WARNINGS: 1

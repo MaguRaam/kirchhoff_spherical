@@ -5,10 +5,10 @@ from math import sqrt
 
 ############################################################################################### 
 
-p_inf     = 1.0     # Pressure of liquid far away from the bubble 
+p_inf     = 100.0     # Pressure of liquid far away from the bubble 
 rho_inf   = 1.0     # Density of liquid 
 gamma_inf = 4.4     # Ratio of specific heats of the liquid 
-pi_inf    = 600.0   # Stiffness constant of the liquid 
+pi_inf    = 6000.0   # Stiffness constant of the liquid 
 c_inf = sqrt(gamma_inf*(p_inf+pi_inf)/rho_inf) # Speed of sound in the liquid 
 mu = 0.0            # Viscosity of the liquid
 S = 0.0             # interface surface tension
@@ -17,7 +17,7 @@ print("speed of sound in water = ", c_inf)
 
 ############################################################################################### 
 
-p0    = 0.1         # Initial pressure inside the bubble  
+p0    = 1.0         # Initial pressure inside the bubble  
 gamma = 1.4 		# Ratio of specific heats inside the bubble 
 R0    = 1.0         # Initial radius of the bubble 
 R0dot = 0.0         # Initial velocity of the bubble interface 
@@ -73,7 +73,7 @@ def rayleighPlesset(y, t):
 ############################################################################################### 
 
 t0 = 0.0 
-tf = 1.75*Tc
+tf = 10*Tc
 y0 = np.array([R0, R0dot])
 t = np.linspace(t0,tf,1000)
 sol = odeint(kellerMiksis, y0, t)
