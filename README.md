@@ -1,2 +1,2 @@
-# bounday_integral
-boundary integral solver to compute far-field acoustic waves from compressible flow solvers
+# Kirchhoff solver
+Kirchhoff solver to compute far-field acoustic waves from axisymmetric bubble collapse using Spherical surface
